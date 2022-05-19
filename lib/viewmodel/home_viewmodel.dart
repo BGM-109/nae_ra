@@ -11,7 +11,11 @@ class HomeViewModel extends ChangeNotifier {
 
   List<RaffleModel> get raffleList => _raffleList;
 
+  bool isLoad = true;
+
   Future<void> getRaffles() async {
     _raffleList = await FirestoreService.readCollectionRaffles();
+    isLoad = false;
+    notifyListeners();
   }
 }
